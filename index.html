@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOMSUBHRA — Creative Portfolio</title>
+  
+  <!-- Bebas Neue font -->
+  <style>
+    @font-face {
+      font-family: 'Bebas Neue';
+      src: url('bebas-neue.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+
+  <!-- Google Fonts: Plus Jakarta Sans for refined editorial typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #070709;
+      --card-bg-glass: transparent;
+      --card-bg-hover: transparent;
+      --text-white: #FFFFFF;
+      --text-muted: rgba(255, 255, 255, 0.70);
+      --text-dim: rgba(255, 255, 255, 0.45);
+      --crimson-red: #E51F2B;
+      --crimson-glow: rgba(229, 31, 43, 0.35);
+      --border-thin: rgba(255, 255, 255, 0.12);
+      --border-highlight: rgba(255, 255, 255, 0.28);
+      --font-display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      background-color: var(--bg-color);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.2) #070709;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+    }
+
+    ::selection {
+      background: var(--crimson-red);
+      color: #fff;
+    }
+
+    /* -------------------------------------------------------------
+       LAYER 1: FIXED FULL-SCREEN MOTION CANVAS BACKGROUND
+    -------------------------------------------------------------- */
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1; /* Sits behind all website content */
+      pointer-events: none;
+      display: block;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: auto;
+    }
+
+    /* Ultra-fine editorial film grain overlay to eliminate JPEG pixelation & banding */
+    .cinematic-grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Red Dot Indicator */
+    .red-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background-color: var(--crimson-red);
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle;
+      box-shadow: 0 0 8px var(--crimson-red);
+    }
+
+    .crimson {
+      color: var(--crimson-red);
+    }
+
+    /* -------------------------------------------------------------
+       EDITORIAL CARDS SYSTEM (BORDERLESS TRANSPARENT CONTENT)
+    -------------------------------------------------------------- */
+    .liquid-glass {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .liquid-glass:hover {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    /* -------------------------------------------------------------
+       NAVIGATION BAR & RESPONSIVE MOBILE DRAWER
+    -------------------------------------------------------------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4vw;
+      z-index: 100;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.35s ease;
+    }
+
+    .navbar.scrolled {
+      background: #070709;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--text-white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+
+    .nav-brand:hover {
+      color: var(--crimson-red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.8vw;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-white);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--crimson-red);
+    }
+
+    .nav-links li:last-child a {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li:last-child a::after {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: var(--crimson-red);
+      border-radius: 50%;
+      margin-left: 8px;
+      box-shadow: 0 0 8px var(--crimson-red);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 101;
+    }
+
+    @keyframes fadeInMenu {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* -------------------------------------------------------------
+       HERO SECTION (OVERLAYING THE FIXED MOTION BACKGROUND)
+    -------------------------------------------------------------- */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 4vw 60px 4vw;
+      z-index: 10;
+    }
+
+    .hero-container {
+      width: 100%;
+      max-width: 1680px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Hero Left Column (Editorial Typography) */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-white);
+      margin-bottom: 2rem;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(4.4rem, 8.8vw, 9.8rem);
+      line-height: 0.88;
+      letter-spacing: -0.015em;
+      text-transform: uppercase;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-headline span {
+      display: block;
+    }
+
+    .hero-subtext {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin-bottom: 2.6rem;
+      max-width: 440px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: var(--text-white);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: gap 0.3s ease;
+    }
+
+    .hero-cta:hover {
+      gap: 22px;
+    }
+
+    .hero-cta-arrow {
+      width: 44px;
+      height: 44px;
+      background-color: var(--crimson-red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px var(--crimson-glow);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .hero-cta:hover .hero-cta-arrow {
+      transform: scale(1.08);
+      background-color: #ff2937;
+    }
+
+    .hero-cta-arrow svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Hero Right Stage: Accents and Pillars */
+    .hero-right-stage {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    /* Vertical decorative indicator on the far right of Hero */
+    .hero-vertical-rule {
+      position: absolute;
+      right: 0;
+      top: 25%;
+      height: 40%;
+      width: 1px;
+      background: var(--border-thin);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .hero-rule-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 8px #fff;
+    }
+
+    /* Bottom-Right 4 Pillars */
+    .hero-pillars {
+      position: absolute;
+      bottom: 4vh;
+      right: 2vw;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      z-index: 10;
+    }
+
+    /* -------------------------------------------------------------
+       EDITORIAL MAIN LAYOUT (WITH LEFT VERTICAL SPINE)
+    -------------------------------------------------------------- */
+    .editorial-section {
+      width: 100%;
+      border-top: 1px solid var(--border-thin);
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 76px 1fr;
+    }
+
+    /* Left Vertical Spine */
+    .editorial-spine {
+      border-right: 1px solid var(--border-thin);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 48px;
+      position: relative;
+    }
+
+    .spine-label {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: var(--font-body);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+    }
+
+    .spine-label .red-dot {
+      margin: 0;
+    }
+
+    .editorial-content {
+      padding: 64px 4vw 80px 4vw;
+      width: 100%;
+    }
+
+    /* -------------------------------------------------------------
+       FEATURED WORK SECTION (BORDERLESS BOLD EDITORIAL)
+    -------------------------------------------------------------- */
+    .featured-work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr) 180px;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .project-card {
+      padding: 12px 0;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: #fff;
+      cursor: pointer;
+      border: none !important;
+    }
+
+    .project-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 12px;
+      border: none !important;
+      margin-bottom: 16px;
+    }
+
+    .project-num {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--crimson-red);
+      margin-right: 12px;
+    }
+
+    .project-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .project-category {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.75);
+      text-transform: uppercase;
+    }
+
+    /* Transparent Previews */
+    .project-preview {
+      width: 100%;
+      height: 280px;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: none !important;
+      border-radius: 12px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: auto;
+    }
+
+    .preview-verve {
+      background: transparent;
+    }
+
+    .preview-verve .logo-text {
+      font-family: 'Times New Roman', serif;
+      font-size: 3.6rem;
+      letter-spacing: 0.15em;
+      color: #EDE4D0;
+      font-style: italic;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .preview-nexus {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .preview-nexus .nexus-headline {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1.15rem;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .preview-nexus .nexus-headline span {
+      color: var(--crimson-red);
+    }
+
+    .preview-lunar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .preview-lunar .lunar-tag {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .preview-lunar .lunar-phones {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .phone-mockup {
+      width: 52px;
+      height: 94px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .phone-mockup.taller {
+      height: 108px;
+    }
+
+    /* "MORE PROJECTS ON REQUEST" Right Side Badge */
+    .more-projects-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .more-projects-badge {
+      width: 68px;
+      height: 68px;
+      background: var(--crimson-red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      box-shadow: 0 0 30px var(--crimson-glow);
+      transition: transform 0.4s ease;
+    }
+
+    .more-projects-col:hover .more-projects-badge {
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    .more-projects-badge svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+    }
+
+    .more-projects-text {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* -------------------------------------------------------------
+       SERVICES SECTION ("WHAT I DO" - BORDERLESS BOLD EDITORIAL)
+    -------------------------------------------------------------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+
+    .service-col {
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border: none !important;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .service-icon svg {
+      width: 44px;
+      height: 44px;
+      stroke: var(--crimson-red);
+      fill: none;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 10px var(--crimson-glow));
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+      color: #FFFFFF;
+    }
+
+    .service-desc {
+      font-size: 0.94rem;
+      line-height: 1.65;
+      color: #E8E8EE;
+      margin-bottom: 28px;
+      font-weight: 700;
+    }
+
+    .service-num {
+      margin-top: auto;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--crimson-red);
+    }
+
+    /* -------------------------------------------------------------
+       ABOUT / PHILOSOPHY SECTION ("MY PHILOSOPHY")
+    -------------------------------------------------------------- */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      padding: 24px 0;
+      border: none !important;
+    }
+
+    .philosophy-quote {
+      font-family: var(--font-display);
+      font-size: clamp(3.0rem, 5.0vw, 5.4rem);
+      font-weight: 800;
+      line-height: 0.94;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .philosophy-quote span.crimson {
+      color: var(--crimson-red);
+    }
+
+    .philosophy-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #FFFFFF;
+      font-weight: 700;
+      max-width: 460px;
+    }
+
+    .philosophy-image-frame {
+      width: 100%;
+      height: 280px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .philosophy-red-box {
+      position: absolute;
+      left: 0;
+      top: 15%;
+      width: 70px;
+      height: 70px;
+      background: var(--crimson-red);
+      z-index: 1;
+      box-shadow: 0 0 30px var(--crimson-glow);
+    }
+
+    .philosophy-img {
+      position: relative;
+      z-index: 2;
+      width: 82%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(125%);
+      border: none !important;
+      border-radius: 12px;
+    }
+
+    /* -------------------------------------------------------------
+       CONTACT SECTION ("LET'S CONNECT")
+    -------------------------------------------------------------- */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1.1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 20px 0 40px 0;
+    }
+
+    .contact-heading {
+      font-family: var(--font-display);
+      font-size: clamp(3.8rem, 6.5vw, 7.2rem);
+      font-weight: 800;
+      line-height: 0.88;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .contact-heading span.crimson {
+      color: var(--crimson-red);
+    }
+
+    .contact-middle {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .contact-intro {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #FFFFFF;
+      font-weight: 700;
+      max-width: 380px;
+    }
+
+    .contact-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: var(--text-white);
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: gap 0.3s ease;
+    }
+
+    .contact-cta:hover {
+      gap: 22px;
+    }
+
+    /* Solid Crimson Pill Graphic in Contact Section */
+    .contact-pill-card {
+      width: 100%;
+      height: 240px;
+      background: var(--crimson-red);
+      border: none !important;
+      border-radius: 120px 0 0 120px;
+      margin-left: auto;
+      padding: 40px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: -10px 0 40px var(--crimson-glow);
+    }
+
+    .contact-pill-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: transform 0.25s ease;
+    }
+
+    .contact-pill-item:hover {
+      transform: translateX(6px);
+    }
+
+    .contact-pill-item svg {
+      width: 22px;
+      height: 22px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.2;
+    }
+
+    /* -------------------------------------------------------------
+       FOOTER
+    -------------------------------------------------------------- */
+    .footer {
+      border-top: 1px solid var(--border-thin);
+      padding: 28px 4vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      position: relative;
+      z-index: 10;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      font-weight: 700;
+      transition: color 0.25s;
+    }
+
+    .footer a:hover {
+      color: #fff;
+    }
+
+    .footer a .red-dot {
+      margin-left: 8px;
+      margin-right: 0;
+    }
+
+    /* Mobile Section Header (visible only on mobile) */
+    .mobile-section-header {
+      display: none;
+    }
+
+    /* -------------------------------------------------------------
+       HIGHLY OPTIMIZED RESPONSIVE BREAKPOINTS (ALL SCREEN SIZES)
+    -------------------------------------------------------------- */
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        padding-top: 20px;
+      }
+      .hero-right-stage {
+        display: none;
+      }
+      .featured-work-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+      }
+      .more-projects-col {
+        grid-column: span 2;
+        padding-top: 16px;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+      }
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .contact-pill-card {
+        border-radius: 24px;
+        width: 100%;
+        height: auto;
+        padding: 36px 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        height: 68px;
+        padding: 0 5vw;
+      }
+      .nav-brand {
+        font-size: 1.35rem;
+        letter-spacing: 0.16em;
+        font-weight: 700;
+      }
+      .nav-links {
+        display: none;
+      }
+      .nav-links.mobile-open {
+        display: flex !important;
+        flex-direction: column;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        width: 100vw;
+        height: calc(100vh - 68px);
+        background: #070709;
+        padding: 44px 7vw;
+        gap: 28px;
+        z-index: 999;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        animation: fadeInMenu 0.25s ease-out;
+      }
+      .nav-links.mobile-open a {
+        font-family: var(--font-display);
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+      .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .editorial-section {
+        grid-template-columns: 1fr;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .editorial-spine {
+        display: none;
+      }
+      .editorial-content {
+        padding: 44px 5vw 56px 5vw;
+      }
+      .mobile-section-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--crimson-red);
+        margin-bottom: 24px;
+      }
+      .hero-section {
+        min-height: 85vh;
+        padding: 85px 5vw 40px 5vw;
+      }
+      .hero-headline {
+        font-size: clamp(3.6rem, 15vw, 5.4rem);
+        line-height: 0.92;
+        margin-bottom: 1.4rem;
+        font-weight: 800;
+      }
+      .hero-subtext {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin-bottom: 2rem;
+      }
+      .featured-work-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .more-projects-col {
+        grid-column: span 1;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .philosophy-grid {
+        padding: 0;
+      }
+      .philosophy-image-frame {
+        justify-content: center;
+        height: 240px;
+      }
+      .philosophy-img {
+        width: 100%;
+      }
+      .contact-heading {
+        font-size: clamp(3.0rem, 13vw, 4.4rem);
+      }
+      .contact-pill-card {
+        padding: 28px 20px;
+        border-radius: 20px;
+      }
+      .contact-pill-item {
+        font-size: 0.90rem;
+      }
+      .footer {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+        padding: 28px 5vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== FIXED FULLSCREEN BACKGROUND CANVAS & GRAIN ==================== -->
+  <canvas id="bgCanvas"></canvas>
+  <div class="cinematic-grain"></div>
+
+  <!-- ==================== WEBSITE CONTENT ==================== -->
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="#hero" class="nav-brand">S O M S U B H R A</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#work">WORK</a></li>
+      <li><a href="#services">SERVICES</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section" id="hero">
+    <div class="hero-container">
+
+      <!-- Left Column: Editorial Headline -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="red-dot"></span>
+          CREATIVE PORTFOLIO
+        </div>
+
+        <h1 class="hero-headline">
+          <span class="line">I DESIGN</span>
+          <span class="line">DIGITAL</span>
+          <span class="line">EXPERIENCES</span>
+        </h1>
+
+        <p class="hero-subtext">
+          BRANDING. UI/UX. WEB DESIGN.<br>
+          PIXEL PERFECT. PURPOSE DRIVEN.
+        </p>
+
+        <a href="#work" class="hero-cta">
+          <span>VIEW MY WORK</span>
+          <div class="hero-cta-arrow">
+            <svg viewBox="0 0 24 24">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Right Column: Accents and Pillars -->
+      <div class="hero-right-stage">
+        <!-- Vertical Rule with Dot -->
+        <div class="hero-vertical-rule">
+          <div class="hero-rule-dot"></div>
+        </div>
+
+        <!-- 4 Pillars -->
+        <div class="hero-pillars">
+          <span>DESIGN</span>
+          <span>STRATEGY</span>
+          <span>STORYTELLING</span>
+          <span>IMPACT</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Featured Work Section -->
+  <section class="editorial-section" id="work">
+    <aside class="editorial-spine">
+      <div class="spine-label">
+        <span class="red-dot"></span>
+        FEATURED WORK
+      </div>
+    </aside>
+
+    <div class="editorial-content">
+      <div class="mobile-section-header"><span class="red-dot"></span>FEATURED WORK</div>
+      <div class="featured-work-grid">
+
+        <!-- Project 01 -->
+        <article class="project-card liquid-glass">
+          <div class="project-card-header">
+            <div>
+              <span class="project-num">01</span>
+              <span class="project-title">VERVE STUDIO</span>
+            </div>
+            <span class="project-category">BRANDING & WEB DESIGN</span>
+          </div>
+          <div class="project-preview preview-verve">
+            <span class="logo-text">VERVE</span>
+          </div>
+        </article>
+
+        <!-- Project 02 -->
+        <article class="project-card liquid-glass">
+          <div class="project-card-header">
+            <div>
+              <span class="project-num">02</span>
+              <span class="project-title">NEXUS FINANCE</span>
+            </div>
+            <span class="project-category">WEB DESIGN & UI/UX</span>
+          </div>
+          <div class="project-preview preview-nexus">
+            <div class="nexus-headline">
+              Financial<br>
+              Clarity.<br>
+              <span>Future</span><br>
+              Confidence.
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 03 -->
+        <article class="project-card liquid-glass">
+          <div class="project-card-header">
+            <div>
+              <span class="project-num">03</span>
+              <span class="project-title">LUNAR APP</span>
+            </div>
+            <span class="project-category">MOBILE APP DESIGN</span>
+          </div>
+          <div class="project-preview preview-lunar">
+            <div class="lunar-tag">Your world.<br>Organized.</div>
+            <div class="lunar-phones">
+              <div class="phone-mockup"></div>
+              <div class="phone-mockup taller"></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right Side: More Projects Badge -->
+        <div class="more-projects-col">
+          <div class="more-projects-badge">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="more-projects-text">
+            MORE PROJECTS<br>ON REQUEST
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section ("WHAT I DO") -->
+  <section class="editorial-section" id="services">
+    <aside class="editorial-spine">
+      <div class="spine-label">
+        <span class="red-dot"></span>
+        WHAT I DO
+      </div>
+    </aside>
+
+    <div class="editorial-content">
+      <div class="mobile-section-header"><span class="red-dot"></span>WHAT I DO</div>
+      <!-- 4 Highly Transparent Liquid Glass Columns -->
+      <div class="services-grid">
+
+        <!-- Service 01 -->
+        <div class="service-col liquid-glass">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3" fill="var(--crimson-red)"/>
+              <path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/>
+            </svg>
+          </div>
+          <h3 class="service-title">BRANDING</h3>
+          <p class="service-desc">Strategic identities that capture attention and build lasting impact across modern digital touchpoints.</p>
+          <span class="service-num">01</span>
+        </div>
+
+        <!-- Service 02 -->
+        <div class="service-col liquid-glass">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"/>
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="12" cy="12" r="1.5" fill="var(--crimson-red)"/>
+            </svg>
+          </div>
+          <h3 class="service-title">UI/UX DESIGN</h3>
+          <p class="service-desc">Intuitive experiences crafted with clarity, elegance and purpose for modern web and mobile apps.</p>
+          <span class="service-num">02</span>
+        </div>
+
+        <!-- Service 03 -->
+        <div class="service-col liquid-glass">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="9" cy="12" r="6"/>
+              <circle cx="15" cy="12" r="6"/>
+            </svg>
+          </div>
+          <h3 class="service-title">WEB DESIGN</h3>
+          <p class="service-desc">High-performance websites that blend progressive creative design and flawless interactive function.</p>
+          <span class="service-num">03</span>
+        </div>
+
+        <!-- Service 04 -->
+        <div class="service-col liquid-glass">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="5" y="5" width="14" height="14" rx="1"/>
+              <rect x="8" y="8" width="8" height="8" rx="0.5" transform="rotate(45 12 12)"/>
+            </svg>
+          </div>
+          <h3 class="service-title">DIGITAL STRATEGY</h3>
+          <p class="service-desc">Design-led strategies that align with your highest ambitions, scaling brands for long-term growth.</p>
+          <span class="service-num">04</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Philosophy Section ("MY PHILOSOPHY") -->
+  <section class="editorial-section" id="about">
+    <aside class="editorial-spine">
+      <div class="spine-label">
+        <span class="red-dot"></span>
+        MY PHILOSOPHY
+      </div>
+    </aside>
+
+    <div class="editorial-content">
+      <div class="mobile-section-header"><span class="red-dot"></span>MY PHILOSOPHY</div>
+      <div class="philosophy-grid liquid-glass">
+        <div class="philosophy-quote">
+          GOOD DESIGN<br>
+          IS CLEAR THINKING<br>
+          MADE <span class="crimson">VISIBLE.</span>
+        </div>
+
+        <p class="philosophy-text">
+          I believe design is more than aesthetics—it's a tool for communication, connection, and change. I craft digital experiences that are intentional, functional, and unapologetically bold. Every interaction is designed with purpose and engineered for precision.
+        </p>
+
+        <div class="philosophy-image-frame">
+          <div class="philosophy-red-box"></div>
+          <img src="ezgif-frame-001.jpg" alt="Editorial Portrait" class="philosophy-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section ("LET'S CONNECT") -->
+  <section class="editorial-section" id="contact">
+    <aside class="editorial-spine">
+      <div class="spine-label">
+        <span class="red-dot"></span>
+        LET'S CONNECT
+      </div>
+    </aside>
+
+    <div class="editorial-content">
+      <div class="mobile-section-header"><span class="red-dot"></span>LET'S CONNECT</div>
+      <div class="contact-container">
+
+        <!-- Headline -->
+        <h2 class="contact-heading">
+          HAVE A PROJECT<br>
+          IN MIND?<br>
+          <span class="crimson">LET'S TALK.</span>
+        </h2>
+
+        <!-- Middle Info -->
+        <div class="contact-middle">
+          <p class="contact-intro">
+            I'm currently open to new collaborations and creative leadership roles. Let's create something extraordinary together.
+          </p>
+          <a href="mailto:somsubhradaw@gmail.com" class="contact-cta">
+            <span>SEND INQUIRY</span>
+            <div class="hero-cta-arrow">
+              <svg viewBox="0 0 24 24">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <!-- Right Side: Solid Crimson Pill Graphic -->
+        <div class="contact-pill-card">
+          <a href="mailto:somsubhradaw@gmail.com" class="contact-pill-item">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <span>somsubhradaw@gmail.com</span>
+          </a>
+
+          <a href="https://www.instagram.com/som_chronicles/" target="_blank" rel="noopener" class="contact-pill-item">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <span>@som_chronicles</span>
+          </a>
+
+          <div class="contact-pill-item">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span>Worldwide</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span>© 2026 SOMSUBHRA</span>
+    <span>CREATIVE PORTFOLIO</span>
+    <a href="#hero">
+      <span>BACK TO TOP</span>
+      <span class="red-dot"></span>
+    </a>
+  </footer>
+
+  <!-- ==================== MOTION ENGINE SCRIPT ==================== -->
+  <script src="lenis.min.js"></script>
+  <script>
+    const TOTAL_FRAMES = 118;
+    const bgCanvas = document.getElementById('bgCanvas');
+    const ctx = bgCanvas.getContext('2d');
+    const navbar = document.getElementById('navbar');
+
+    const images = new Array(TOTAL_FRAMES);
+    let targetFrame = 0;
+    let currentFrame = 0;
+    let currentDrawnFrame = -1;
+    let needsRedraw = true;
+
+    function getFramePath(index) {
+      const num = String(index + 1).padStart(3, '0');
+      return `ezgif-frame-${num}.jpg`;
+    }
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      bgCanvas.width = Math.floor(w * dpr);
+      bgCanvas.height = Math.floor(h * dpr);
+      bgCanvas.style.width = w + 'px';
+      bgCanvas.style.height = h + 'px';
+
+      // Always enforce highest quality bicubic interpolation
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      needsRedraw = true;
+    }
+
+    function drawFrame(index) {
+      const safeIndex = Math.max(0, Math.min(TOTAL_FRAMES - 1, index));
+      let img = images[safeIndex];
+
+      if (!img || !img.complete || img.naturalWidth === 0) {
+        for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+          const prev = safeIndex - offset;
+          if (prev >= 0 && images[prev] && images[prev].complete && images[prev].naturalWidth > 0) {
+            img = images[prev];
+            break;
+          }
+          const next = safeIndex + offset;
+          if (next < TOTAL_FRAMES && images[next] && images[next].complete && images[next].naturalWidth > 0) {
+            img = images[next];
+            break;
+          }
+        }
+      }
+
+      if (!img || !img.complete || img.naturalWidth === 0) return;
+
+      const cw = bgCanvas.width;
+      const ch = bgCanvas.height;
+      const iw = img.naturalWidth;
+      const ih = img.naturalHeight;
+
+      // Cover scaling so the portrait motion fills the viewport background
+      const scale = Math.max(cw / iw, ch / ih);
+      const drawW = iw * scale;
+      const drawH = ih * scale;
+
+      // Natural center framing (the subject in original frames is already composed on the right)
+      let drawX = (cw - drawW) / 2;
+      if (window.innerWidth < 768) {
+        drawX -= (drawW * 0.04);
+      }
+      const drawY = (ch - drawH) / 2;
+
+      // Ensure high quality smoothing is active before drawing
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.drawImage(img, drawX, drawY, drawW, drawH);
+
+      // PRECISELY HIDE THE GEMINI LOGO IN THE CORNER OF THE MAIN SCROLLABLE IMAGES
+      // In 1920x1080 source frames: logo center is (1739.6, 899.6), size 71px.
+      const logoX = drawX + (1739.6 * scale);
+      const logoY = drawY + (899.6 * scale);
+      const circleRadius = Math.max(42, 54 * scale);
+
+      ctx.save();
+      // Step 1: Solid black block-out under circle to eliminate all white star pixels
+      ctx.beginPath();
+      ctx.arc(logoX, logoY, circleRadius + 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#070709';
+      ctx.fill();
+
+      // Step 2: Solid crimson/orange-red circle covering the logo area
+      ctx.beginPath();
+      ctx.arc(logoX, logoY, circleRadius, 0, Math.PI * 2);
+      ctx.fillStyle = '#E51F2B';
+      ctx.shadowColor = 'rgba(229, 31, 43, 0.7)';
+      ctx.shadowBlur = 18;
+      ctx.fill();
+
+      // Step 3: Sharp white editorial asterisk symbol matching reference aesthetic
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.lineWidth = Math.max(2, 3.0 * scale);
+      ctx.lineCap = 'round';
+      const rInner = circleRadius * 0.44;
+      for (let a = 0; a < 4; a++) {
+        const angle = (a * Math.PI) / 4;
+        ctx.beginPath();
+        ctx.moveTo(logoX - Math.cos(angle) * rInner, logoY - Math.sin(angle) * rInner);
+        ctx.lineTo(logoX + Math.cos(angle) * rInner, logoY + Math.sin(angle) * rInner);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      currentDrawnFrame = safeIndex;
+      needsRedraw = false;
+    }
+
+    // Preload & pre-decode all frames off the main thread to eliminate scroll lag & freezes
+    function preloadFrames() {
+      // Priority load frame 0 for instantaneous initial paint
+      const firstImg = new Image();
+      firstImg.onload = () => {
+        images[0] = firstImg;
+        needsRedraw = true;
+        drawFrame(0);
+      };
+      firstImg.src = getFramePath(0);
+
+      // Asynchronously pre-decode all remaining frames into GPU memory
+      for (let i = 1; i < TOTAL_FRAMES; i++) {
+        const img = new Image();
+        img.src = getFramePath(i);
+        if (img.decode) {
+          img.decode().then(() => {
+            images[i] = img;
+            if (currentDrawnFrame === -1 || Math.round(currentFrame) === i) {
+              needsRedraw = true;
+            }
+          }).catch(() => {
+            images[i] = img;
+          });
+        } else {
+          img.onload = () => {
+            images[i] = img;
+            if (currentDrawnFrame === -1 || Math.round(currentFrame) === i) {
+              needsRedraw = true;
+            }
+          };
+        }
+      }
+    }
+
+    // Scrub canvas across the entire webpage scroll range
+    function updateScrollProgress() {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (maxScroll > 0) {
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        const progress = Math.max(0, Math.min(1, scrollY / maxScroll));
+        targetFrame = progress * (TOTAL_FRAMES - 1);
+      }
+
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+
+    // Responsive, high-performance momentum scrolling (tuned for touchpad & mouse wheels)
+    let lenis = null;
+    if (typeof Lenis !== 'undefined') {
+      lenis = new Lenis({
+        duration: 0.85,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.1,
+        touchMultiplier: 1.0,
+        syncTouch: true,
+      });
+
+      lenis.on('scroll', updateScrollProgress);
+    } else {
+      window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+
+    // Ultra-smooth, responsive animation render loop
+    function animate(time) {
+      if (lenis) {
+        lenis.raf(time);
+      }
+
+      // Snappy 0.35 dampening so scrolling reacts immediately to touchpad/wheel gestures
+      const diff = targetFrame - currentFrame;
+      if (Math.abs(diff) > 0.001) {
+        currentFrame += diff * 0.35;
+      } else {
+        currentFrame = targetFrame;
+      }
+
+      const frameIndex = Math.round(currentFrame);
+      if (frameIndex !== currentDrawnFrame || needsRedraw) {
+        drawFrame(frameIndex);
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Mobile Navigation Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (mobileMenuBtn && navLinks) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('mobile-open');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('mobile-open');
+        });
+      });
+    }
+
+    // Smooth Anchor Scroll Navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          if (lenis) {
+            lenis.scrollTo(targetEl, { offset: -50, duration: 1.4 });
+          } else {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // Initialize
+    resizeCanvas();
+    preloadFrames();
+    updateScrollProgress();
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>
