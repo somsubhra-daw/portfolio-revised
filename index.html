@@ -3,7 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOMSUBHRA — Creative Portfolio</title>
+  <title>Somsubhra Daw — Portfolio | Computer Science &amp; Engineering</title>
+
+  <!-- SEO Metadata -->
+  <meta name="description" content="Official portfolio of Somsubhra Daw, Computer Science &amp; Engineering student at University Institute of Technology (UIT BU). Exploring AOSP, Android Battery Tuning Lab, algorithms, and interactive digital experiences.">
+  <meta name="keywords" content="Somsubhra Daw, Portfolio, University Intitute of Technology, University Institute of Technology, computer science, UIT BU, Android Battery Tuning Lab, Software Engineering">
+  <meta name="author" content="Somsubhra Daw">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Somsubhra Daw — Portfolio | Computer Science">
+  <meta property="og:description" content="Portfolio of Somsubhra Daw, Computer Science &amp; Engineering student at University Institute of Technology (UIT BU).">
+  <meta property="og:site_name" content="Somsubhra Daw Portfolio">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Somsubhra Daw — Portfolio">
+  <meta name="twitter:description" content="Computer Science &amp; Engineering at University Institute of Technology (UIT BU).">
+
+  <!-- Structured Data (JSON-LD) for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Somsubhra Daw",
+    "jobTitle": "Computer Science & Engineering Student",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "University Institute of Technology, Burdwan University"
+    },
+    "knowsAbout": [
+      "Computer Science",
+      "Software Engineering",
+      "Android Battery Tuning Lab",
+      "AOSP",
+      "Algorithms & Data Structures"
+    ],
+    "sameAs": [
+      "https://github.com/somsubhra-daw",
+      "https://www.linkedin.com/in/somsubhra-daw",
+      "https://www.instagram.com/som_chronicles/"
+    ],
+    "description": "Portfolio of Somsubhra Daw, Computer Science student at University Institute of Technology."
+  }
+  </script>
+
+  <!-- High-Priority Resource Preloads for Instant Speed -->
+  <link rel="preload" href="ezgif-frame-001.jpg" as="image">
+  <link rel="preload" href="bebas-neue.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="lenis.min.js" as="script">
   
   <!-- Bebas Neue font -->
   <style>
@@ -37,10 +86,41 @@
       --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    * {
+    /* Universal Anti-Copy, Anti-Selection & Anti-Drag Protection */
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+      -webkit-user-drag: none !important;
+    }
+
+    ::selection {
+      background: transparent !important;
+      color: inherit !important;
+    }
+
+    ::-moz-selection {
+      background: transparent !important;
+      color: inherit !important;
+    }
+
+    img, canvas, video, svg {
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+      pointer-events: none;
+    }
+
+    a, button, [role="button"], input, textarea {
+      cursor: pointer;
+    }
+
+    a svg, button svg {
+      pointer-events: none;
     }
 
     html {
@@ -48,10 +128,22 @@
       color: var(--text-white);
       font-family: var(--font-body);
       font-size: 16px;
-      scroll-behavior: smooth;
+      scroll-behavior: auto !important;
       overflow-x: hidden;
       scrollbar-width: thin;
       scrollbar-color: rgba(255,255,255,0.2) #070709;
+    }
+
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
     }
 
     body {
@@ -62,11 +154,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       position: relative;
-    }
-
-    ::selection {
-      background: var(--crimson-red);
-      color: #fff;
+      scroll-behavior: auto !important;
     }
 
     /* -------------------------------------------------------------
@@ -393,11 +481,13 @@
     -------------------------------------------------------------- */
     .editorial-section {
       width: 100%;
+      min-height: 85vh;
       border-top: 1px solid var(--border-thin);
       position: relative;
       z-index: 10;
       display: grid;
       grid-template-columns: 76px 1fr;
+      align-items: center;
     }
 
     /* Left Vertical Spine */
@@ -435,181 +525,231 @@
     }
 
     /* -------------------------------------------------------------
-       FEATURED WORK SECTION (BORDERLESS BOLD EDITORIAL)
+       FEATURED PROJECT SHOWCASE (ANDROID BATTERY TUNING LAB)
     -------------------------------------------------------------- */
-    .featured-work-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr) 180px;
-      gap: 36px;
-      align-items: stretch;
+    .project-showcase {
+      max-width: 960px;
+      padding: 10px 0 20px 0;
     }
 
-    .project-card {
-      padding: 12px 0;
+    .project-tag-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .project-category-badge {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--crimson-red);
+      background: rgba(229, 31, 43, 0.12);
+      border: 1px solid rgba(229, 31, 43, 0.3);
+      padding: 4px 14px;
+      border-radius: 4px;
+    }
+
+    .showcase-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5.5vw, 5.0rem);
+      font-weight: 800;
+      line-height: 0.94;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      margin-bottom: 22px;
+      letter-spacing: -0.01em;
+    }
+
+    .showcase-desc {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: #E2E2EA;
+      font-weight: 700;
+      margin-bottom: 26px;
+      max-width: 760px;
+    }
+
+    .showcase-meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .meta-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      color: #FFFFFF;
+      letter-spacing: 0.04em;
+    }
+
+    .github-project-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--crimson-red);
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 14px 30px;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 24px var(--crimson-glow);
+      transition: all 0.3s ease;
+    }
+
+    .github-project-btn:hover {
+      background: #FF2E3B;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(229, 31, 43, 0.6);
+      gap: 16px;
+    }
+
+    /* -------------------------------------------------------------
+       EDUCATION & DEGREE SECTION (ZERO TRANSLUCENT BOXES)
+    -------------------------------------------------------------- */
+    .education-grid {
       display: flex;
       flex-direction: column;
-      text-decoration: none;
-      color: #fff;
-      cursor: pointer;
-      border: none !important;
+      gap: 28px;
+      max-width: 980px;
     }
 
-    .project-card-header {
+    .education-header-wrap {
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding-bottom: 12px;
-      border: none !important;
-      margin-bottom: 16px;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
     }
 
-    .project-num {
+    .education-header-icon {
+      width: 32px;
+      height: 32px;
+      fill: none;
+      stroke: #FFFFFF;
+      stroke-width: 2;
+    }
+
+    .education-header-title {
       font-family: var(--font-display);
-      font-size: 1.6rem;
+      font-size: clamp(2.0rem, 3.5vw, 3.0rem);
       font-weight: 800;
-      color: var(--crimson-red);
-      margin-right: 12px;
-    }
-
-    .project-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: #FFFFFF;
     }
 
-    .project-category {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: rgba(255, 255, 255, 0.75);
-      text-transform: uppercase;
-    }
-
-    /* Transparent Previews */
-    .project-preview {
-      width: 100%;
-      height: 280px;
-      background: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
+    .edu-card {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
       border: none !important;
-      border-radius: 12px;
+      box-shadow: none !important;
+      padding: 16px 0 28px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      transition: transform 0.3s ease;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      margin-top: auto;
     }
 
-    .preview-verve {
-      background: transparent;
+    .edu-card:last-child {
+      border-bottom: none !important;
     }
 
-    .preview-verve .logo-text {
-      font-family: 'Times New Roman', serif;
-      font-size: 3.6rem;
-      letter-spacing: 0.15em;
-      color: #EDE4D0;
-      font-style: italic;
-      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    .edu-card:hover {
+      background: transparent !important;
+      transform: translateX(6px);
     }
 
-    .preview-nexus {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .preview-nexus .nexus-headline {
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 1.15rem;
-      line-height: 1.25;
-      margin-bottom: 12px;
-    }
-
-    .preview-nexus .nexus-headline span {
-      color: var(--crimson-red);
-    }
-
-    .preview-lunar {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .preview-lunar .lunar-tag {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    .preview-lunar .lunar-phones {
-      display: flex;
-      gap: 10px;
-      align-items: flex-end;
-    }
-
-    .phone-mockup {
-      width: 52px;
-      height: 94px;
-      border: none;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.14);
-    }
-
-    .phone-mockup.taller {
-      height: 108px;
-    }
-
-    /* "MORE PROJECTS ON REQUEST" Right Side Badge */
-    .more-projects-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px 10px;
-    }
-
-    .more-projects-badge {
-      width: 68px;
-      height: 68px;
-      background: var(--crimson-red);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      box-shadow: 0 0 30px var(--crimson-glow);
-      transition: transform 0.4s ease;
-    }
-
-    .more-projects-col:hover .more-projects-badge {
-      transform: rotate(90deg) scale(1.1);
-    }
-
-    .more-projects-badge svg {
-      width: 28px;
-      height: 28px;
-      fill: #fff;
-    }
-
-    .more-projects-text {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+    .edu-duration {
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      line-height: 1.45;
+      color: #FF9E2C;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .edu-degree {
+      font-family: var(--font-body);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .edu-spec {
+      font-size: 1.0rem;
+      font-weight: 600;
+      color: #B0B0C0;
+      margin-bottom: 14px;
+    }
+
+    .edu-inst-link {
+      font-size: 1.0rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: rgba(255, 255, 255, 0.35);
+      display: inline-block;
+      margin-bottom: 16px;
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+
+    .edu-inst-link:hover {
+      color: var(--crimson-red);
+      text-decoration-color: var(--crimson-red);
+    }
+
+    .edu-inst-abbr {
+      color: #9E9EAE;
+      font-weight: 500;
+    }
+
+    .edu-desc {
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: #D0D0E0;
+      font-weight: 600;
+      margin-bottom: 18px;
+      max-width: 740px;
+    }
+
+    .edu-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .edu-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0;
+      background: transparent !important;
+      border: none !important;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #E2E2EA;
+    }
+
+    .edu-badge::before {
+      content: '•';
+      color: var(--crimson-red);
+      margin-right: 8px;
+      font-size: 1.2rem;
+      line-height: 1;
     }
 
     /* -------------------------------------------------------------
@@ -792,44 +932,59 @@
       gap: 22px;
     }
 
-    /* Solid Crimson Pill Graphic in Contact Section */
+    /* Transparent Social Links Tab in Contact Section */
     .contact-pill-card {
       width: 100%;
-      height: 240px;
-      background: var(--crimson-red);
+      min-height: auto;
+      height: auto;
+      background: transparent !important;
       border: none !important;
-      border-radius: 120px 0 0 120px;
+      border-radius: 0 !important;
       margin-left: auto;
-      padding: 40px 48px;
+      padding: 10px 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 20px;
-      box-shadow: -10px 0 40px var(--crimson-glow);
+      gap: 22px;
+      box-shadow: none !important;
     }
 
     .contact-pill-item {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 16px;
-      color: #fff;
+      color: #FFFFFF;
       text-decoration: none;
-      font-size: 0.98rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      transition: transform 0.25s ease;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: transform 0.25s ease, color 0.25s ease;
+      width: fit-content;
     }
 
     .contact-pill-item:hover {
-      transform: translateX(6px);
+      transform: translateX(8px);
+      color: var(--crimson-red);
     }
 
     .contact-pill-item svg {
-      width: 22px;
-      height: 22px;
-      stroke: #fff;
+      width: 24px;
+      height: 24px;
+      stroke: var(--crimson-red);
       fill: none;
       stroke-width: 2.2;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .contact-pill-item svg[fill="currentColor"] {
+      fill: var(--crimson-red) !important;
+      stroke: none !important;
+    }
+
+    .contact-pill-item:hover svg {
+      transform: scale(1.15);
     }
 
     /* -------------------------------------------------------------
@@ -851,6 +1006,17 @@
       background: transparent;
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-divider {
+      color: rgba(255, 255, 255, 0.25);
     }
 
     .footer a {
@@ -887,14 +1053,6 @@
       .hero-right-stage {
         display: none;
       }
-      .featured-work-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 28px;
-      }
-      .more-projects-col {
-        grid-column: span 2;
-        padding-top: 16px;
-      }
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 28px;
@@ -908,10 +1066,12 @@
         gap: 36px;
       }
       .contact-pill-card {
-        border-radius: 24px;
+        border-radius: 0 !important;
         width: 100%;
-        height: auto;
-        padding: 36px 32px;
+        min-height: auto;
+        padding: 10px 0;
+        background: transparent !important;
+        box-shadow: none !important;
       }
     }
 
@@ -957,6 +1117,7 @@
       .editorial-section {
         grid-template-columns: 1fr;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
+        min-height: auto;
       }
       .editorial-spine {
         display: none;
@@ -976,27 +1137,56 @@
         margin-bottom: 24px;
       }
       .hero-section {
-        min-height: 85vh;
-        padding: 85px 5vw 40px 5vw;
+        min-height: 100svh;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 0 6vw 42px 6vw;
+        background: linear-gradient(to top, rgba(7, 7, 9, 0.94) 0%, rgba(7, 7, 9, 0.70) 38%, rgba(7, 7, 9, 0) 65%);
+      }
+      .hero-container {
+        width: 100%;
+        margin-top: auto;
+      }
+      .hero-content {
+        margin-top: auto;
+        padding-top: 10px;
+      }
+      .hero-badge {
+        font-size: 0.70rem;
+        margin-bottom: 0.8rem;
       }
       .hero-headline {
-        font-size: clamp(3.6rem, 15vw, 5.4rem);
-        line-height: 0.92;
-        margin-bottom: 1.4rem;
+        font-size: clamp(2.5rem, 11vw, 3.8rem);
+        line-height: 0.94;
+        margin-bottom: 1.0rem;
         font-weight: 800;
+        letter-spacing: -0.01em;
       }
       .hero-subtext {
-        font-size: 0.85rem;
+        font-size: 0.78rem;
+        line-height: 1.5;
         font-weight: 700;
-        color: #FFFFFF;
-        margin-bottom: 2rem;
+        color: #E2E2EA;
+        margin-bottom: 1.4rem;
+        letter-spacing: 0.08em;
       }
-      .featured-work-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
+      .hero-cta {
+        padding: 6px 0;
       }
-      .more-projects-col {
-        grid-column: span 1;
+      .showcase-title {
+        font-size: clamp(2.0rem, 8vw, 2.8rem);
+      }
+      .edu-card {
+        padding: 16px 0 24px 0;
+      }
+      .edu-degree {
+        font-size: 1.25rem;
+      }
+      .edu-spec, .edu-inst-link {
+        font-size: 0.92rem;
       }
       .services-grid {
         grid-template-columns: 1fr;
@@ -1016,17 +1206,23 @@
         font-size: clamp(3.0rem, 13vw, 4.4rem);
       }
       .contact-pill-card {
-        padding: 28px 20px;
-        border-radius: 20px;
+        padding: 10px 0;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        gap: 18px;
       }
       .contact-pill-item {
-        font-size: 0.90rem;
+        font-size: 1.05rem;
       }
       .footer {
         flex-direction: column;
-        gap: 14px;
+        gap: 16px;
         text-align: center;
         padding: 28px 5vw;
+      }
+      .footer-left {
+        justify-content: center;
       }
     }
   </style>
@@ -1044,6 +1240,7 @@
     <a href="#hero" class="nav-brand">S O M S U B H R A</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#work">WORK</a></li>
+      <li><a href="#education">EDUCATION</a></li>
       <li><a href="#services">SERVICES</a></li>
       <li><a href="#about">ABOUT</a></li>
       <li><a href="#contact">CONTACT</a></li>
@@ -1063,11 +1260,6 @@
 
       <!-- Left Column: Editorial Headline -->
       <div class="hero-content">
-        <div class="hero-badge">
-          <span class="red-dot"></span>
-          CREATIVE PORTFOLIO
-        </div>
-
         <h1 class="hero-headline">
           <span class="line">I DESIGN</span>
           <span class="line">DIGITAL</span>
@@ -1114,77 +1306,98 @@
     <aside class="editorial-spine">
       <div class="spine-label">
         <span class="red-dot"></span>
-        FEATURED WORK
+        FEATURED PROJECT
       </div>
     </aside>
 
     <div class="editorial-content">
-      <div class="mobile-section-header"><span class="red-dot"></span>FEATURED WORK</div>
-      <div class="featured-work-grid">
+      <div class="mobile-section-header"><span class="red-dot"></span>FEATURED PROJECT</div>
 
-        <!-- Project 01 -->
-        <article class="project-card liquid-glass">
-          <div class="project-card-header">
-            <div>
-              <span class="project-num">01</span>
-              <span class="project-title">VERVE STUDIO</span>
-            </div>
-            <span class="project-category">BRANDING & WEB DESIGN</span>
-          </div>
-          <div class="project-preview preview-verve">
-            <span class="logo-text">VERVE</span>
-          </div>
-        </article>
-
-        <!-- Project 02 -->
-        <article class="project-card liquid-glass">
-          <div class="project-card-header">
-            <div>
-              <span class="project-num">02</span>
-              <span class="project-title">NEXUS FINANCE</span>
-            </div>
-            <span class="project-category">WEB DESIGN & UI/UX</span>
-          </div>
-          <div class="project-preview preview-nexus">
-            <div class="nexus-headline">
-              Financial<br>
-              Clarity.<br>
-              <span>Future</span><br>
-              Confidence.
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 03 -->
-        <article class="project-card liquid-glass">
-          <div class="project-card-header">
-            <div>
-              <span class="project-num">03</span>
-              <span class="project-title">LUNAR APP</span>
-            </div>
-            <span class="project-category">MOBILE APP DESIGN</span>
-          </div>
-          <div class="project-preview preview-lunar">
-            <div class="lunar-tag">Your world.<br>Organized.</div>
-            <div class="lunar-phones">
-              <div class="phone-mockup"></div>
-              <div class="phone-mockup taller"></div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Right Side: More Projects Badge -->
-        <div class="more-projects-col">
-          <div class="more-projects-badge">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+      <div class="project-showcase">
+        <div class="project-tag-wrap">
+          <span class="project-num">01</span>
+          <span class="project-category-badge">AOSP & SYSTEM RESEARCH</span>
+        </div>
+        <h2 class="showcase-title">ANDROID BATTERY TUNING LAB</h2>
+        <p class="showcase-desc">
+          A research-driven telemetry framework documenting controlled experiments on Android power behavior,
+          JobScheduler quota controllers, App Standby Buckets, and OEM system-level power management policies via ADB and system telemetry.
+        </p>
+        <div class="showcase-meta-tags">
+          <span class="meta-tag">Android OS</span>
+          <span class="meta-tag">ADB Shell</span>
+          <span class="meta-tag">JobScheduler</span>
+          <span class="meta-tag">App Standby Buckets</span>
+          <span class="meta-tag">System Optimization</span>
+        </div>
+        <div class="showcase-actions">
+          <a href="https://github.com/somsubhra-daw/Android-Battery-Tuning-Lab" target="_blank" rel="noopener noreferrer" class="github-project-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
             </svg>
-          </div>
-          <div class="more-projects-text">
-            MORE PROJECTS<br>ON REQUEST
-          </div>
+            <span>EXPLORE ON GITHUB</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section ("EDUCATION & DEGREE") -->
+  <section class="editorial-section" id="education">
+    <aside class="editorial-spine">
+      <div class="spine-label">
+        <span class="red-dot"></span>
+        EDUCATION
+      </div>
+    </aside>
+
+    <div class="editorial-content">
+      <div class="mobile-section-header"><span class="red-dot"></span>EDUCATION & DEGREE</div>
+
+      <div class="education-grid">
+        <div class="education-header-wrap">
+          <svg class="education-header-icon" viewBox="0 0 24 24">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+          <h2 class="education-header-title">EDUCATION & DEGREE</h2>
         </div>
 
+        <!-- Education Card 1 -->
+        <article class="edu-card">
+          <span class="edu-duration">Aug 2026 - Present</span>
+          <h3 class="edu-degree">Bachelor of Technology (B.Tech)</h3>
+          <p class="edu-spec">Computer Science & Engineering</p>
+          <a href="#" class="edu-inst-link">
+            University Institute of Technology, Burdwan University <span class="edu-inst-abbr">(UIT BU)</span>
+          </a>
+          <div class="edu-badges">
+            <span class="edu-badge">Software Engineering</span>
+            <span class="edu-badge">Algorithms & DSA</span>
+            <span class="edu-badge">Java OOP</span>
+          </div>
+        </article>
+
+        <!-- Education Card 2 -->
+        <article class="edu-card">
+          <span class="edu-duration">Jul 2026 - Aug 2026</span>
+          <h3 class="edu-degree">Bachelor of Technology (B.Tech)</h3>
+          <p class="edu-spec">Computer Science & Engineering</p>
+          <a href="#" class="edu-inst-link">
+            Government College of Engineering and Textile Technology, Berhampore <span class="edu-inst-abbr">(GCETTB)</span>
+          </a>
+          <p class="edu-desc">
+            Former student at Government College of Engineering and Textile Technology, Berhampore. Attended initial course modules prior to transitioning to UIT BU.
+          </p>
+          <div class="edu-badges">
+            <span class="edu-badge">Computer Science</span>
+            <span class="edu-badge">Foundational Mathematics</span>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1326,25 +1539,44 @@
           </a>
         </div>
 
-        <!-- Right Side: Solid Crimson Pill Graphic -->
+        <!-- Right Side: Transparent Social Links Tab -->
         <div class="contact-pill-card">
+          <!-- Email -->
           <a href="mailto:somsubhradaw@gmail.com" class="contact-pill-item">
             <svg viewBox="0 0 24 24">
               <rect x="2" y="4" width="20" height="16" rx="2"></rect>
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
             </svg>
-            <span>somsubhradaw@gmail.com</span>
+            <span>Email</span>
           </a>
 
-          <a href="https://www.instagram.com/som_chronicles/" target="_blank" rel="noopener" class="contact-pill-item">
+          <!-- GitHub -->
+          <a href="https://github.com/somsubhra-daw" target="_blank" rel="noopener noreferrer" class="contact-pill-item">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/somsubhra-daw" target="_blank" rel="noopener noreferrer" class="contact-pill-item">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/som_chronicles/" target="_blank" rel="noopener noreferrer" class="contact-pill-item">
             <svg viewBox="0 0 24 24">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
             </svg>
-            <span>@som_chronicles</span>
+            <span>Instagram</span>
           </a>
 
+          <!-- Location -->
           <div class="contact-pill-item">
             <svg viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="10"></circle>
@@ -1361,8 +1593,15 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <span>© 2026 SOMSUBHRA</span>
-    <span>CREATIVE PORTFOLIO</span>
+    <div class="footer-left">
+      <span>© 2026 SOMSUBHRA</span>
+      <span class="footer-divider">•</span>
+      <a href="https://github.com/somsubhra-daw" target="_blank" rel="noopener noreferrer">GITHUB</a>
+      <span class="footer-divider">•</span>
+      <a href="https://www.linkedin.com/in/somsubhra-daw" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+      <span class="footer-divider">•</span>
+      <a href="https://www.instagram.com/som_chronicles/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+    </div>
     <a href="#hero">
       <span>BACK TO TOP</span>
       <span class="red-dot"></span>
@@ -1379,7 +1618,6 @@
 
     const images = new Array(TOTAL_FRAMES);
     let targetFrame = 0;
-    let currentFrame = 0;
     let currentDrawnFrame = -1;
     let needsRedraw = true;
 
@@ -1437,7 +1675,8 @@
       // Natural center framing (the subject in original frames is already composed on the right)
       let drawX = (cw - drawW) / 2;
       if (window.innerWidth < 768) {
-        drawX -= (drawW * 0.04);
+        // Precisely center the subject's face (X=977.5 in 1920x1080 source frames) at canvas center
+        drawX = (cw / 2) - (977.5 * scale);
       }
       const drawY = (ch - drawH) / 2;
 
@@ -1488,51 +1727,45 @@
       needsRedraw = false;
     }
 
-    // Preload & pre-decode all frames off the main thread to eliminate scroll lag & freezes
+    // Prioritized frame loading for instant initial render and high efficiency
     function preloadFrames() {
-      // Priority load frame 0 for instantaneous initial paint
+      // 1. Immediately request frame 0 so the portrait renders without any wait
       const firstImg = new Image();
+      images[0] = firstImg;
       firstImg.onload = () => {
-        images[0] = firstImg;
         needsRedraw = true;
-        drawFrame(0);
       };
       firstImg.src = getFramePath(0);
 
-      // Asynchronously pre-decode all remaining frames into GPU memory
+      // 2. Load remaining frames asynchronously
       for (let i = 1; i < TOTAL_FRAMES; i++) {
         const img = new Image();
+        images[i] = img;
+        img.onload = () => {
+          if (Math.round(targetFrame) === i) {
+            needsRedraw = true;
+          }
+        };
         img.src = getFramePath(i);
-        if (img.decode) {
-          img.decode().then(() => {
-            images[i] = img;
-            if (currentDrawnFrame === -1 || Math.round(currentFrame) === i) {
-              needsRedraw = true;
-            }
-          }).catch(() => {
-            images[i] = img;
-          });
-        } else {
-          img.onload = () => {
-            images[i] = img;
-            if (currentDrawnFrame === -1 || Math.round(currentFrame) === i) {
-              needsRedraw = true;
-            }
-          };
-        }
       }
     }
 
     // Scrub canvas across the entire webpage scroll range
-    function updateScrollProgress() {
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      if (maxScroll > 0) {
+    function updateScrollProgress(e) {
+      let progress = 0;
+      if (e && typeof e.progress === 'number') {
+        progress = e.progress;
+      } else {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
         const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-        const progress = Math.max(0, Math.min(1, scrollY / maxScroll));
-        targetFrame = progress * (TOTAL_FRAMES - 1);
+        progress = maxScroll > 0 ? scrollY / maxScroll : 0;
       }
 
-      if (window.scrollY > 40) {
+      progress = Math.max(0, Math.min(1, progress));
+      targetFrame = progress * (TOTAL_FRAMES - 1);
+
+      const scrollY = (e && typeof e.scroll === 'number') ? e.scroll : window.scrollY;
+      if (scrollY > 40) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
@@ -1543,19 +1776,17 @@
     let lenis = null;
     if (typeof Lenis !== 'undefined') {
       lenis = new Lenis({
-        duration: 0.85,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 1.1,
-        touchMultiplier: 1.0,
-        syncTouch: true,
+        lerp: 0.1,             // High-responsiveness physics lerp (immediate reaction, no lag)
+        wheelMultiplier: 1.0,  // Natural 1:1 wheel response
+        touchMultiplier: 1.0,  // Natural touch response
+        smoothWheel: true,     // Smooth mouse wheel gestures
+        syncTouch: false,      // Preserves native precision touchpad tracking (eliminates sticking & jumping)
+        infinite: false,
       });
 
-      lenis.on('scroll', updateScrollProgress);
+      lenis.on('scroll', (e) => updateScrollProgress(e));
     } else {
-      window.addEventListener('scroll', updateScrollProgress, { passive: true });
+      window.addEventListener('scroll', () => updateScrollProgress(), { passive: true });
     }
 
     window.addEventListener('resize', resizeCanvas);
@@ -1566,15 +1797,8 @@
         lenis.raf(time);
       }
 
-      // Snappy 0.35 dampening so scrolling reacts immediately to touchpad/wheel gestures
-      const diff = targetFrame - currentFrame;
-      if (Math.abs(diff) > 0.001) {
-        currentFrame += diff * 0.35;
-      } else {
-        currentFrame = targetFrame;
-      }
-
-      const frameIndex = Math.round(currentFrame);
+      // Synchronous 1:1 frame tracking with Lenis smooth momentum
+      const frameIndex = Math.round(targetFrame);
       if (frameIndex !== currentDrawnFrame || needsRedraw) {
         drawFrame(frameIndex);
       }
@@ -1605,7 +1829,7 @@
         if (targetEl) {
           e.preventDefault();
           if (lenis) {
-            lenis.scrollTo(targetEl, { offset: -50, duration: 1.4 });
+            lenis.scrollTo(targetEl, { offset: -30, duration: 0.9 });
           } else {
             targetEl.scrollIntoView({ behavior: 'smooth' });
           }
@@ -1618,6 +1842,69 @@
     preloadFrames();
     updateScrollProgress();
     requestAnimationFrame(animate);
+  </script>
+
+  <!-- Anti-Copy, Anti-Download & Asset Protection System -->
+  <script>
+    (function() {
+      // 1. Disable Right-Click Context Menu across entire page
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+      }, { capture: true });
+
+      // 2. Disable Text & Asset Dragging, Selection, Copying, and Cutting
+      ['copy', 'cut', 'paste', 'selectstart', 'dragstart', 'drag'].forEach(function(evt) {
+        document.addEventListener(evt, function(e) {
+          e.preventDefault();
+          if (e.clipboardData) {
+            try { e.clipboardData.setData('text/plain', ''); } catch (err) {}
+          }
+          return false;
+        }, { capture: true });
+      });
+
+      // 3. Block Developer Tools & Download/Save Keyboard Shortcuts
+      document.addEventListener('keydown', function(e) {
+        // F12 (DevTools)
+        if (e.key === 'F12' || e.keyCode === 123) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+
+        const isMod = e.ctrlKey || e.metaKey;
+        const key = (e.key || '').toLowerCase();
+
+        // Ctrl+Shift+I / J / C (DevTools inspector & console)
+        if (isMod && e.shiftKey && (key === 'i' || key === 'j' || key === 'c')) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+
+        // Ctrl+U (View Source), Ctrl+S (Save Page), Ctrl+P (Print to PDF), Ctrl+C (Copy), Ctrl+A (Select All)
+        if (isMod && (key === 'u' || key === 's' || key === 'p' || key === 'c' || key === 'a')) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+      }, { capture: true });
+
+      // 4. Protect Canvas against programmatic image extraction / downloading
+      try {
+        HTMLCanvasElement.prototype.toDataURL = function() { return 'data:,'; };
+        HTMLCanvasElement.prototype.toBlob = function(cb) { if (cb) cb(null); };
+      } catch (err) {}
+
+      // 5. Neutralize console extraction
+      try {
+        const noop = function() {};
+        ['log', 'debug', 'info', 'warn', 'dir', 'table'].forEach(function(m) {
+          console[m] = noop;
+        });
+      } catch (err) {}
+    })();
   </script>
 </body>
 </html>
